@@ -76,7 +76,7 @@ function restore_postgisDB{
 	# Migrate a previous PostGIS DB into the newly installed version
 	# supply the DB name to be used for the latest postgis DB and
 	# a file path to the pg_dump -Fc backup from an earlier PostGIS version
-	echo 'create database $DB_NAME;' | sudo -u postgres psql
+	echo 'create database -E UTF8 $DB_NAME;' | sudo -u postgres psql
 	echo 'create extension postgis; create extension postgis_topology;' \
 	  | sudo -u postgres psql -d $DB_NAME
 	/usr/share/postgresql/$PG_VERSION/contrib/postgis-$PG_VERSION/postgis_restore.pl \
