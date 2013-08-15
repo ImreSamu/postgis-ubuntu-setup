@@ -10,11 +10,8 @@ SRC_DIR=/home/
 
 
 sudo /etc/init.d/postgresql stop
-upgrade_postgis() 
 
-
-
-function upgrade_postgis{ 
+function upgrade_postgis { 
 
 # install any missing prerequisites
 sudo apt-get install -y  gdebi build-essential checkinstall  \
@@ -72,7 +69,7 @@ sudo ldconfig
 sudo /etc/init.d/postgresql start
 }
 
-function restore_postgisDB{
+function restore_postgisDB {
 	# Migrate a previous PostGIS DB into the newly installed version
 	# supply the DB name to be used for the latest postgis DB and
 	# a file path to the pg_dump -Fc backup from an earlier PostGIS version
@@ -83,3 +80,7 @@ function restore_postgisDB{
 	  /path/to/mydb.dump \
 	  | sudo -u postgres psql -d $DB_NAME
 }
+
+
+
+upgrade_postgis
