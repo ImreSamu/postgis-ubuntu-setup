@@ -1,14 +1,16 @@
 #!/bin/bash
 
-DB_NAME=geodb
+DB_NAME=osm
 
 GEOSVERSION=3.4.0
 POSTGIS_VERSION=$POSTGIS_VERSION
 PG_VERSION=9.3
 GDAL_VERSION=1.9.2
-SRC_DIR=/home/gregs/projects/geodjangosetup
+SRC_DIR=/home/
+
 
 sudo /etc/init.d/postgresql stop
+
 function upgrade_postgis{ 
 
 # install any missing prerequisites
