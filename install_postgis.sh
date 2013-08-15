@@ -10,11 +10,14 @@ SRC_DIR=/home/
 
 
 sudo /etc/init.d/postgresql stop
+upgrade_postgis() 
+
+
 
 function upgrade_postgis{ 
 
 # install any missing prerequisites
-sudo aptitude install gdebi build-essential checkinstall  \
+sudo apt-get install -y  gdebi build-essential checkinstall  \
   postgresql-server-dev-9.3 libjson0-dev libxml2-dev libproj-dev \
   python2.7-dev swig binutils
  
