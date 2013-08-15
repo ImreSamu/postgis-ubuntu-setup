@@ -2,23 +2,18 @@
 
 DB_NAME=geodb
 
-GEOSVERSION=3.3.8
+GEOSVERSION=3.4.0
 POSTGIS_VERSION=$POSTGIS_VERSION
-PG_VERSION=9.1
+PG_VERSION=9.3
 GDAL_VERSION=1.9.2
 SRC_DIR=/home/gregs/projects/geodjangosetup
 
 sudo /etc/init.d/postgresql stop
 function upgrade_postgis{ 
-# PostGIS 1.5.2 and its dependencies were installed already, so I
-# removed them
-sudo aptitude remove postgis postgresql-9.1-postgis \
-  libgdal1-dev libgdal1-1.7.0 gdal-bin python-gdal \
-  libspatialite2 libspatialite3 libgeos-dev libgeos-c1
- 
+
 # install any missing prerequisites
-sudo aptitude install gdebi build-essential checkinstall postgresql \
-  postgresql-server-dev-9.1 libjson0-dev libxml2-dev libproj-dev \
+sudo aptitude install gdebi build-essential checkinstall  \
+  postgresql-server-dev-9.3 libjson0-dev libxml2-dev libproj-dev \
   python2.7-dev swig binutils
  
 mkdir -p $SRC_DIR
@@ -41,7 +36,7 @@ wget http://download.osgeo.org/gdal/gdal-$GDALVERSION.tar.gz
 tar xvzf gdal-$GDALVERSION.tar.gz
 cd gdal-$GDALVERSION/
 ./configure --prefix=/opt/gdal --with-geos=/opt/geos/bin/geos-config \
-  --with-pg=/usr/lib/postgresql/9.1/bin/pg_config --with-python
+  --with-pg=/usr/lib/postgresql/9.3/bin/pg_config --with-python
 make -j2
 sudo checkinstall  # uninstall with: dpkg -r gdal
 sudo gdebi gdal_$GDAL_VERSION-1_amd64.deb
